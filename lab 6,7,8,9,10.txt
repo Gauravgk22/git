@@ -1,0 +1,111 @@
+06)
+library(plotrix)
+data<-(179718, 41370, 41914, 44280)
+pct<-(data(sum(data))*100
+pct<-round(pct 12)
+labels<-c("ARMY","NAVY","AIRFORCE","MARINE")
+labels 1<-paste(labels,pct,"%")
+pie 3D(
+       data,
+       shade=0.5,
+       labels = labels 1,
+       label col = "red",
+       label cex = 0.75,
+)
+
+
+07)
+if(!require Namespace("quantmod"))install.packages("quantmod")
+if(!require Namespace("corrplot"))install.packages("corrplot")
+library(quantmod)
+library(corrplot)
+rates<-c("USD/EUR","USD/GBP","USD/CHF","USD/JPY","USD/CAD","USD/AUD","USD/IDR")
+get symbols(rates,src = "oanada",return.class='xts')
+fx data<-cbind(USDAUD,USDCAP,USDCHF,USDEUR,USDGBP,USDIDR,USDJPY)
+fx cor<-cor(fx data,use= "Complete.obs")
+par(mfrow= c(2,2))
+corrplot(fx cor, method = "ellipse")
+corrplot(fx cor, method = "number")
+corrplot(fx cor, method = "square")
+corrplot(fx cor, method = "square",type= "lower")
+corrplot(fx cor, method = "number",order= "nclust",addred= 4,rect.col= "blue")
+
+
+08)
+df <- data.frame(
+  DATE = c("1/1/1967", "1/1/1968", "1/1/1970", "1/1/1971", "1/1/1972", "1/1/1975", 
+           "1/1/1976", "1/1/1978", "1/1/1979", "1/1/1988", "1/1/1989", "1/1/1990", 
+           "1/1/1991", "1/1/2000", "1/1/2001", "1/1/2010", "1/1/2011"),
+  Gini = c(0.397, 0.386, 0.394, 0.396, 0.401, 0.397, 0.398, 0.402, 0.404, 0.426, 
+           0.431, 0.428, 0.428, 0.462, 0.466, 0.470, 0.477),
+  gdp_ann = c(861.7, 942.5, 1075.9, 1167.8, 1282.4, 1688.6, 1877.6, 2356.6, 
+              2632.2, 5252.6, 5657.7, 5979.6, 6174, 10289.7, 10625.3, 14958.3, 15533.8),
+  Presidents = c("Johnson", "Johnson", "Nixon", "Nixon", "Nixon", "Ford", "Ford", 
+                 "Carter", "Carter", "Reagan", "Reagan", "G. Bush", "G. Bush", 
+                 "Clinton", "Clinton", "Obama", "Obama")
+)
+
+plot(df$gdp_ann, df$Gini, 
+     main = "Scatter Plot of GDP vs Gini Index",
+     xlab = "GDP (in billions)", 
+     ylab = "Gini Index", 
+     pch = 19, col = "blue")
+
+model <- lm(Gini ~ gdp_ann, data = df)
+abline(model, col = "red", lwd = 2)
+
+text(df$gdp_ann, df$Gini, labels = df$Presidents, pos = 4, cex = 0.8, col = "black")
+
+legend("topleft", 
+       legend = c("Data Points", "Regression Line"), 
+       col = c("blue", "red"), 
+       pch = c(19, NA), 
+       lty = c(NA, 1),
+       bty = "n")
+
+
+
+09)
+data data.frame(
+   years = c(2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010,2011, 2012, 2013),
+   Jan = c(3,610,1188,1544,3013,847,372,263,389,524,357),
+   Feb = c(2,663,1284,1570,2673,1072,403,304,254,356,360),
+   Apr = c(3435,1303,1144, 1801, 2540,1299,567,385,289,392,545),
+   May = c(546,654,1392, 2272,2834,890,390,387,381,304,888),
+   Jun = c(597,901,1346,2571,2192,747,501,385,386,529,659 ),
+   Jul = c(647,825,1530, 3297,2690,643,407,443,308,469,1145),
+   Aug = c(794,877,2276,2865,2481,682,618,516,401,422,1012 ),
+   Sep = c(565,1033,1422,2562,1366,606,333,254,397, 396,1221),
+   Oct = c(517,1016,1298,2983,1295,590,435,312,366,290,1095),
+   Nov = c(486,1652,1467, 3077,1110,535,226,307,279,253,903),
+   Dec = c(526,1112, 1133,2891,987,582,475,218,388,275,983)
+)
+row.names (data)<- data$years
+data-data[, -1]
+heatmap(as.matrix(data),
+        Rowv NA, Colv = NA,
+        scale "column",
+        col heat.colors (256),
+        xlab "Body Count per Month",
+        ylab "Years") 
+
+
+
+10)
+install.packages("quantmod")
+library(quantmod)
+
+prices <- "MSFT"
+
+getSymbols(prices, src = "yahoo")
+
+msft <- dailyReturn(MSFT[, "MSFT.Adjusted"], type = "log")
+msft <- na.omit(as.numeric(msft)) 
+
+fake <- rnorm(length(msft), mean = 0, sd = 1)
+
+par(mfrow = c(1, 1))  # Single plot
+qqplot(fake, msft, pch = 18, main = "Q-Q Plot: MSFT vs Fake (Normal)",
+       xlab = "Theoretical Quantiles (Fake)", 
+       ylab = "Empirical Quantiles (MSFT)")
+abline(0, 1, col = "red", lwd = 2)  
