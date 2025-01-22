@@ -1,0 +1,16 @@
+5. # Install the required packages
+install.packages(c("wordcloud", "RColorBrewer"))
+# Load the libraries
+library(wordcloud)
+library(RColorBrewer)
+# Generate a color palette
+Pal <- brewer.pal(10, "RdGy")
+# Create the word cloud
+wordcloud(
+words = c("inequality", "law", "policy", "unemploy", "job", "economy",
+"democracy", "republicans", "challenge", "congress", "america", "growth"),
+freq = c(26, 9, 2, 7, 30, 26, 1, 4, 3, 9, 57, 9),
+min.freq = 2,
+col = Pal, # Use the generated color palette
+random.order = FALSE
+)

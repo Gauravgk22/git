@@ -1,0 +1,12 @@
+1. library(plotrix)
+library(lubridate)
+tasks <- list(
+labels = c("research proposal", "literature survey", "data collection"),
+starts = ymd("2023-01-12", "2023-02-12", "2023-02-26"),
+ends = ymd("2023-02-12", "2023-04-12", "2023-05-01"),
+priorities = c(1, 2, 3)
+)
+vgridpos <- ymd("2023-01-12", "2023-02-12", "2023-02-26")
+vgridlab <- c("Jan", "Feb", "Mar")
+gantt.chart(tasks, vgridpos = vgridpos, vgridlab = vgridlab, main = "My Gantt Chart",
+taskcolors = c("red", "pink", "blue"), border.col = "black")

@@ -1,0 +1,20 @@
+3.
+lilary (plot 3D).
+Xseq 1,1, by: 0.5) Y=seg 1.1. by = 0.5) zval (
+20.8, 22.3, 22.1, 11.1.20.1
+2.2, 6.7, 14.1, 6.6.24.7.
+15.7, 15.1, 9.9, 9.3, 14.7.
+21.9, 11.2, 11.6, 3.9, 14.8)
+2=matrix (zval, In rows= 5, neol: 5, by row= TRUE),
+hist 3D (x, y, z)
+Zlim, c (0,25),
+theata= 40,
+phi = 40.
+axes: TRUE,.
+label: TRUE,
+Hicks: 5.
+ticklype = "detailed",
+space=0.5.
+lightning = TRUE,
+light = "diffuse."
+shade =0.5)
